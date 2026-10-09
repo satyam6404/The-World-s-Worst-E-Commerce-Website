@@ -1,0 +1,1679 @@
+/* ============================================================
+   MEGA WORST MART — Styles
+   Intentionally terrible aesthetics, excellent code.
+   ============================================================ */
+
+/* ─── RESET & GLOBAL ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  /* Jhatka dena hai, smooth nahi */
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+
+}
+
+body {
+  font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
+  color: #00ff88;
+  background: linear-gradient(135deg, #ff00cc, #ffee00, #00ffee, #ff6600);
+  background-size: 400% 400%;
+  animation: bgShift 8s ease infinite;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='24' font-size='24'>🍕</text></svg>") 4 4, auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Sahi Mode: clean, normal store */
+body.sahi-mode {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  cursor: auto;
+  animation: none;
+}
+
+body.sahi-mode * {
+  animation: none !important;
+  transform: none !important;
+}
+
+body.sahi-mode .card {
+  border: 1px solid #ddd !important;
+  background: #fff !important;
+  border-radius: 8px;
+}
+
+body.sahi-mode #topMarquee {
+  display: none;
+}
+
+body.sahi-mode #fakeLoader {
+  display: none !important;
+}
+
+body.sahi-mode #cookieBanner {
+  display: none !important;
+}
+
+body.sahi-mode #header {
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+}
+
+body.sahi-mode #siteTitle {
+  color: #333;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+body.sahi-mode .navLink {
+  transform: none;
+  text-decoration: none;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+}
+
+body.sahi-mode .discount {
+  display: none;
+}
+
+body.sahi-mode .card h3 {
+  color: #333;
+}
+
+body.sahi-mode .card .price {
+  color: #e63946;
+}
+
+body.sahi-mode .modalBox {
+  animation: none;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+body.sahi-mode footer {
+  background: #fff;
+  color: #666;
+  border-top: 1px solid #ddd;
+}
+
+body.sahi-mode #chatWidget {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+body.sahi-mode #chatHeader {
+  background: #333;
+  border-radius: 8px 8px 0 0;
+}
+
+body.sahi-mode #chaosSection {
+  display: none;
+}
+
+body.sahi-mode .social-proof-toast {
+  display: none !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-shadow: 3px 3px 0 #000;
+}
+
+body.sahi-mode h1,
+body.sahi-mode h2,
+body.sahi-mode h3,
+body.sahi-mode h4 {
+  text-shadow: none;
+}
+
+a {
+  color: #ff0000;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ─── BUTTONS ─── */
+button {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px 18px;
+  margin: 6px;
+  border: 4px dashed #000;
+  background: #ff3366;
+  color: #ffff00;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  position: relative;
+}
+
+button:hover {
+  transform: rotate(-5deg) scale(1.1);
+  background: #6600ff;
+}
+
+button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+body.sahi-mode button {
+  border: 1px solid #333;
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+body.sahi-mode button:hover {
+  background: #555;
+  transform: none;
+}
+
+/* ─── INPUTS ─── */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 3px double #ff0000;
+  background: #222;
+  color: #ff00ff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #666;
+  font-style: italic;
+}
+
+body.sahi-mode input,
+body.sahi-mode textarea,
+body.sahi-mode select {
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  border-radius: 4px;
+}
+
+select {
+  cursor: pointer;
+  appearance: auto;
+}
+
+/* ─── FAKE LOADER ─── */
+#fakeLoader {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+}
+
+#fakeLoader.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#fakeLoaderBarWrap {
+  width: 60%;
+  max-width: 400px;
+  height: 28px;
+  background: #333;
+  border: 2px solid #ff0;
+  overflow: hidden;
+}
+
+#fakeLoaderBar {
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(45deg, #ff0, #ff0 10px, #f0f 10px, #f0f 20px);
+  transition: width 0.4s;
+}
+
+#fakeLoaderText {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ─── COOKIE BANNER ─── */
+#cookieBanner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 35vh;
+  background: rgba(0, 0, 0, 0.95);
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 6000;
+  padding: 20px;
+  text-align: center;
+}
+
+#cookieBanner .cookie-reject {
+  font-size: 8px;
+  color: #333;
+  cursor: pointer;
+  margin-top: 6px;
+  text-decoration: none;
+}
+
+#cookieBanner .cookie-reject:hover {
+  color: #888;
+}
+
+/* ─── MARQUEE ─── */
+#topMarquee {
+  background: #000;
+  color: #ff0;
+  font-size: 20px;
+  padding: 8px 0;
+  border-bottom: 5px solid red;
+}
+
+/* ─── HEADER ─── */
+#header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: #1a0033;
+  border-bottom: 8px ridge #ff00ff;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#logo {
+  font-size: 56px;
+  animation: wobbleSpin 3s ease-in-out infinite;
+  cursor: pointer;
+}
+
+@keyframes wobbleSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  75% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+#logo:hover {
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#siteTitle {
+  font-size: 36px;
+  background: linear-gradient(90deg, red, orange, yellow, lime, cyan, magenta, red);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 2s linear infinite;
+  text-shadow: none;
+}
+
+@keyframes rainbow {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+#nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.navLink {
+  font-size: 16px;
+  padding: 6px 12px;
+  background: #ffee00;
+  border: 3px outset #ff0066;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.navLink:nth-child(odd) {
+  transform: rotate(3deg);
+}
+
+.navLink:nth-child(even) {
+  transform: rotate(-4deg);
+}
+
+.navLink:hover {
+  text-decoration: underline wavy;
+  background: #ff6600;
+  color: #fff;
+}
+
+#chaosMeter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #ff0;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 10px;
+  border: 1px solid #ff0;
+  border-radius: 20px;
+}
+
+#chaosBarMini {
+  width: 60px;
+  height: 10px;
+  background: #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#chaosBarMiniInner {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, lime, yellow, red);
+  transition: width 1s;
+}
+
+/* ─── SALE COUNTDOWN ─── */
+#saleCountdown {
+  background: #000;
+  color: #ff0;
+  text-align: center;
+  padding: 8px;
+  font-size: 20px;
+  border-bottom: 3px solid #f00;
+}
+
+#saleCountdown .timer {
+  color: #0f0;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/* ─── MAIN CONTENT ─── */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px 200px;
+}
+
+.page-section {
+  margin: 24px 0;
+  scroll-margin-top: 140px;
+}
+
+.sub {
+  color: #fff;
+  background: #000;
+  display: inline-block;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+}
+
+/* ─── SEARCH & FILTERS BAR ─── */
+#searchFilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 3px solid #ff0;
+}
+
+#searchFilterBar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+#searchFilterBar select {
+  width: auto;
+  min-width: 150px;
+}
+
+#searchFilterBar button {
+  white-space: nowrap;
+}
+
+.search-suggestion {
+  background: #330033;
+  color: #ff0;
+  padding: 6px 12px;
+  margin-top: 4px;
+  font-style: italic;
+  display: none;
+}
+
+/* ─── VIEWERS COUNTER ─── */
+.viewers-counter {
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid #f00;
+  color: #ff0;
+  padding: 6px 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+  animation: pulse 1.5s infinite alternate;
+  font-size: 14px;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* ─── PRODUCT GRID ─── */
+#productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: #fffacd;
+  color: #800000;
+  padding: 16px;
+  border: 6px dotted #0000ff;
+  position: relative;
+  transition: transform 0.4s;
+  cursor: pointer;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+.card:nth-child(4n+1) {
+  transform: rotate(2deg);
+  background: #90ee90;
+}
+
+.card:nth-child(4n+2) {
+  transform: rotate(-3deg);
+  background: #ffb6c1;
+}
+
+.card:nth-child(4n+3) {
+  transform: rotate(-1deg);
+  background: #add8e6;
+}
+
+.card:nth-child(4n) {
+  transform: rotate(1.5deg);
+  background: #ffe4b5;
+}
+
+.card:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 5;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card .emoji {
+  font-size: 64px;
+  text-align: center;
+  display: block;
+}
+
+.product-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.detail-image {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 16px auto;
+}
+
+.cart-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.card h3 {
+  margin: 6px 0;
+  color: #4b0082;
+  text-shadow: none;
+  font-size: 16px;
+}
+
+.card .desc {
+  font-size: 13px;
+  min-height: 48px;
+  color: #555;
+}
+
+.card .price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.card .mrp {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 14px;
+}
+
+.card .discount {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: red;
+  color: yellow;
+  padding: 4px 10px;
+  transform: rotate(15deg);
+  font-weight: bold;
+  font-size: 12px;
+  animation: pulseDiscount 0.6s infinite alternate;
+  z-index: 2;
+}
+
+@keyframes pulseDiscount {
+  to {
+    transform: rotate(15deg) scale(1.2);
+  }
+}
+
+.card .stock {
+  font-size: 12px;
+  color: #8b0000;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.card .rating {
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.card .card-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.card .card-buttons button {
+  font-size: 13px;
+  padding: 6px 12px;
+  margin: 0;
+}
+
+/* Runaway button on homepage banner only */
+.runaway-btn {
+  position: relative;
+  transition: transform 0.15s ease-out;
+}
+
+/* ─── PRODUCT DETAIL VIEW ─── */
+#productDetail {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 24px;
+  border: 5px double #ff0;
+  color: #fff;
+}
+
+#productDetail .detail-emoji {
+  font-size: 100px;
+  text-align: center;
+  display: block;
+}
+
+#productDetail h2 {
+  color: #ff0;
+}
+
+#productDetail .detail-price {
+  font-size: 36px;
+  color: #0f0;
+  font-weight: bold;
+}
+
+#productDetail .detail-mrp {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 18px;
+}
+
+#productDetail .detail-desc {
+  font-size: 16px;
+  margin: 12px 0;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+#productDetail .detail-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+#productDetail .detail-meta span {
+  background: #333;
+  padding: 6px 12px;
+  border: 1px solid #666;
+}
+
+/* ─── CART ─── */
+#cartSection {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border: 5px double #fff;
+  color: #fff;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin: 6px 0;
+  background: #1a001a;
+  border-left: 8px solid orange;
+  flex-wrap: wrap;
+}
+
+.cart-item:nth-child(even) {
+  transform: skewX(-3deg);
+}
+
+body.sahi-mode .cart-item:nth-child(even) {
+  transform: none;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.cart-item-actions button {
+  font-size: 13px;
+  padding: 6px 10px;
+  margin: 0;
+}
+
+.cart-summary {
+  margin-top: 16px;
+  padding: 16px;
+  background: #111;
+  border: 2px solid #ff0;
+}
+
+.cart-summary .fee-line {
+  color: #ff6b6b;
+  font-size: 14px;
+}
+
+.cart-summary .total-line {
+  font-size: 22px;
+  color: #0f0;
+  font-weight: bold;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 40px;
+  font-size: 20px;
+  color: #888;
+}
+
+/* Coupon input in cart */
+.coupon-bar {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+  align-items: center;
+}
+
+.coupon-bar input {
+  flex: 1;
+}
+
+.coupon-msg {
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.coupon-msg.success {
+  color: #0f0;
+}
+
+.coupon-msg.error {
+  color: #f66;
+}
+
+/* ─── CHECKOUT ─── */
+#checkoutSection {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 24px;
+  border: 5px double #ff0;
+  color: #fff;
+}
+
+.checkout-step {
+  display: none;
+  padding: 16px 0;
+}
+
+.checkout-step.active {
+  display: block;
+}
+
+.checkout-step h3 {
+  color: #ff0;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin: 10px 0;
+}
+
+.form-group label {
+  display: block;
+  color: #ff0;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.form-group .optional {
+  color: #888;
+  font-size: 11px;
+}
+
+.checkout-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-option {
+  padding: 14px;
+  border: 3px solid #666;
+  background: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.payment-option:hover,
+.payment-option.selected {
+  border-color: #0f0;
+}
+
+.payment-option h4 {
+  color: #ff0;
+  margin-bottom: 4px;
+}
+
+.payment-option p {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.fake-notice {
+  background: #ff000033;
+  border: 1px solid #f00;
+  color: #ff6;
+  padding: 8px 12px;
+  font-size: 12px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* T&C Scroll Section */
+.tnc-scroll {
+  max-height: 150px;
+  overflow-y: auto;
+  background: #111;
+  color: #aaa;
+  padding: 10px;
+  font-size: 11px;
+  border: 1px solid #333;
+  margin: 8px 0;
+  line-height: 1.8;
+}
+
+.tnc-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.tnc-check input[type="checkbox"] {
+  width: auto;
+}
+
+/* ─── ORDER CONFIRMATION ─── */
+#orderConfirmation {
+  text-align: center;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 5px double #0f0;
+  color: #fff;
+}
+
+#orderConfirmation h2 {
+  color: #0f0;
+}
+
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ─── ORDER TRACKING ─── */
+#trackingSection {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 24px;
+  border: 5px double #ff0;
+  color: #fff;
+}
+
+.tracking-timeline {
+  padding: 16px 0;
+}
+
+.tracking-step {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-left: 3px solid #333;
+  padding-left: 16px;
+  position: relative;
+}
+
+.tracking-step::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.tracking-step.done::before {
+  background: #0f0;
+}
+
+.tracking-step.done {
+  border-left-color: #0f0;
+}
+
+.tracking-step .step-status {
+  font-size: 16px;
+}
+
+.tracking-step .step-time {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ─── MY ORDERS ─── */
+.order-card {
+  background: #1a1a1a;
+  border: 2px solid #444;
+  padding: 14px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.order-card:hover {
+  border-color: #ff0;
+}
+
+.order-card h4 {
+  color: #ff0;
+  margin-bottom: 6px;
+}
+
+.order-card .order-meta {
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* ─── AUTH PAGES ─── */
+.auth-section {
+  max-width: 400px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 24px;
+  border: 5px double #ff0;
+  color: #fff;
+}
+
+.auth-section h2 {
+  color: #ff0;
+  margin-bottom: 16px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background: #333;
+  color: #aaa;
+  cursor: pointer;
+  border: 2px solid #444;
+}
+
+.auth-tab.active {
+  background: #ff0;
+  color: #000;
+  font-weight: bold;
+}
+
+.auth-msg {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.auth-msg.error {
+  color: #f66;
+  background: #330000;
+}
+
+.auth-msg.success {
+  color: #0f0;
+  background: #003300;
+}
+
+.password-rules {
+  font-size: 12px;
+  color: #aaa;
+  margin: 4px 0;
+}
+
+.captcha-section {
+  background: #111;
+  border: 2px solid #ff0;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+.captcha-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.captcha-cell {
+  font-size: 32px;
+  text-align: center;
+  padding: 8px;
+  background: #222;
+  border: 2px solid #444;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.captcha-cell.selected {
+  border-color: #0f0;
+  background: #003300;
+}
+
+.captcha-cell:hover {
+  border-color: #ff0;
+}
+
+.captcha-skip {
+  font-size: 11px;
+  color: #666;
+  cursor: pointer;
+  display: none;
+}
+
+.captcha-skip:hover {
+  color: #ff0;
+}
+
+/* ─── MODALS ─── */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+}
+
+.modalBox {
+  width: min(500px, 94vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #ffff99;
+  color: #000;
+  padding: 24px;
+  border: 8px outset #ff00ff;
+  position: relative;
+  animation: wobble 1.5s infinite;
+}
+
+@keyframes wobble {
+
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 10px;
+  /* Intentionally tiny */
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+}
+
+.closeBtn:hover {
+  color: #000;
+  font-size: 20px;
+}
+
+/* Newsletter popup */
+#newsletterPopup .fake-x {
+  position: absolute;
+  top: 4px;
+  right: 30px;
+  font-size: 10px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+#newsletterPopup .real-x {
+  display: none;
+}
+
+/* ─── REVIEW SECTION ─── */
+.review-list {
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  padding: 8px;
+  margin: 8px 0;
+}
+
+.review-item {
+  border-bottom: 1px dashed #ccc;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.review-item .review-author {
+  font-weight: bold;
+  color: #4b0082;
+}
+
+.review-item .review-rating {
+  color: #ff8c00;
+}
+
+.review-item .review-date {
+  font-size: 11px;
+  color: #999;
+}
+
+/* ─── WISHLIST ─── */
+.wishlist-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  padding: 4px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.3);
+}
+
+/* ─── SPIN WHEEL ─── */
+#wheel {
+  font-size: 100px;
+  text-align: center;
+  display: block;
+}
+
+#wheel.spinning {
+  animation: spin 0.3s linear infinite;
+}
+
+/* ─── CHAT WIDGET ─── */
+#chatWidget {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  width: 300px;
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  z-index: 4000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#chatHeader {
+  background: #ff0000;
+  color: #fff;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+#chatBody {
+  height: 180px;
+  overflow-y: auto;
+  padding: 8px;
+  font-size: 13px;
+}
+
+.chatMsg {
+  margin: 4px 0;
+  padding: 6px 10px;
+  border-radius: 10px;
+  max-width: 85%;
+  word-wrap: break-word;
+}
+
+.chatMsg.user {
+  background: #cce5ff;
+  margin-left: auto;
+  text-align: right;
+}
+
+.chatMsg.bot {
+  background: #ffcccc;
+}
+
+#chatInputWrap {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chatInput {
+  border: none;
+  margin: 0;
+  width: 75%;
+  padding: 8px;
+}
+
+#chatSend {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: none;
+  background: #ff3366;
+  color: #fff;
+}
+
+#chatWidget.collapsed #chatBody,
+#chatWidget.collapsed #chatInputWrap {
+  display: none;
+}
+
+/* ─── TOASTS ─── */
+#toastBox {
+  position: fixed;
+  top: 80px;
+  right: 14px;
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 340px;
+}
+
+.toast {
+  background: #000;
+  color: #0f0;
+  padding: 10px 14px;
+  border: 2px solid #0f0;
+  animation: slideInRight 0.4s;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.toast .toast-close {
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.toast .toast-close:hover {
+  color: #fff;
+}
+
+.toast.undo-toast {
+  border-color: #ff0;
+}
+
+.toast.undo-toast .undo-btn {
+  color: #ff0;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(120%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+/* Social proof toast */
+.social-proof-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 14px;
+  background: #000;
+  color: #0f0;
+  padding: 10px 14px;
+  border: 2px solid #0f0;
+  z-index: 4500;
+  font-size: 13px;
+  animation: slideInLeft 0.4s;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: 320px;
+}
+
+.social-proof-toast .close-sp {
+  cursor: pointer;
+  color: #666;
+}
+
+.social-proof-toast .close-sp:hover {
+  color: #fff;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-120%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+/* ─── SCROLL TO TOP ─── */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 80px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  border-radius: 50%;
+  border: 3px solid #ff0;
+  background: #000;
+  color: #ff0;
+  cursor: pointer;
+  z-index: 3000;
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ─── SOUND TOGGLE ─── */
+#soundToggle {
+  position: fixed;
+  bottom: 140px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  border: 2px solid #666;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  z-index: 3000;
+  padding: 0;
+  margin: 0;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: #000;
+  color: #888;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+footer a {
+  color: #ff6600;
+}
+
+footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+footer .footer-awards {
+  color: #ff0;
+  margin: 10px 0;
+}
+
+footer .sahi-mode-link {
+  font-size: 8px;
+  color: #222;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+footer .sahi-mode-link:hover {
+  color: #666;
+}
+
+/* ─── STATIC PAGES ─── */
+.static-page {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px;
+  border: 5px double #ff0;
+  color: #fff;
+  line-height: 1.8;
+}
+
+.static-page h1 {
+  color: #ff0;
+  margin-bottom: 16px;
+}
+
+.static-page h2 {
+  color: #0f0;
+  margin: 16px 0 8px;
+}
+
+.static-page p {
+  margin: 8px 0;
+}
+
+/* ─── 404 PAGE ─── */
+.page-404 {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.page-404 .big-emoji {
+  font-size: 120px;
+}
+
+.page-404 h1 {
+  font-size: 48px;
+  color: #ff0;
+}
+
+.page-404 p {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* ─── HOMEPAGE BANNER ─── */
+.hero-banner {
+  background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+  padding: 40px 20px;
+  text-align: center;
+  border: 6px groove gold;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner h2 {
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 3px 3px 0 #000;
+}
+
+.hero-banner p {
+  color: #ff0;
+  font-size: 18px;
+}
+
+.hero-banner .hero-cta {
+  font-size: 24px;
+  padding: 14px 30px;
+  background: #ff0;
+  color: #000;
+  border: 4px solid #000;
+  margin-top: 16px;
+}
+
+/* ─── KONAMI UNLOCK ─── */
+.konami-unlocked {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 255, 0, 0.2);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: flashGreen 0.5s 3;
+}
+
+@keyframes flashGreen {
+
+  0%,
+  100% {
+    background: rgba(0, 255, 0, 0);
+  }
+
+  50% {
+    background: rgba(0, 255, 0, 0.3);
+  }
+}
+
+/* ─── MOBILE RESPONSIVE ─── */
+@media (max-width: 768px) {
+  #siteTitle {
+    font-size: 22px;
+  }
+
+  #header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  #chatWidget {
+    width: 240px;
+  }
+
+  .hero-banner h2 {
+    font-size: 24px;
+  }
+
+  .hero-banner .hero-cta {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  #productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .card .emoji {
+    font-size: 48px;
+  }
+
+  #searchFilterBar {
+    flex-direction: column;
+  }
+
+  #searchFilterBar input,
+  #searchFilterBar select {
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  #siteTitle {
+    font-size: 18px;
+  }
+
+  #productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

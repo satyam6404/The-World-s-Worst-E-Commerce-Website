@@ -1,0 +1,37 @@
+[
+  {
+    "code": "BEKAAR50",
+    "type": "percentage",
+    "value": 50,
+    "active": true,
+    "description": "50% off! (Waise bhi price pehle se badha hua tha)"
+  },
+  {
+    "code": "SIRFAAJ",
+    "type": "percentage",
+    "value": 30,
+    "active": true,
+    "description": "Sirf aaj ke liye! (Kal bhi chalega, parson bhi)"
+  },
+  {
+    "code": "NAHICHALEGA",
+    "type": "fixed",
+    "value": 100,
+    "active": true,
+    "description": "₹100 off! Code kehta hai nahi chalega, par chalta hai"
+  },
+  {
+    "code": "EXPIRED2020",
+    "type": "percentage",
+    "value": 99,
+    "active": false,
+    "description": "99% off tha. 2020 mein. Ab sirf yaadein hain."
+  },
+  {
+    "code": "FREELOOT",
+    "type": "percentage",
+    "value": 0,
+    "active": true,
+    "description": "0% discount. Free mein 0% off. Best deal ever."
+  }
+]

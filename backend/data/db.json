@@ -1,0 +1,99 @@
+{
+  "users": [],
+  "orders": [],
+  "reviews": [
+    {
+      "productId": 1,
+      "text": "Sirf ek joota mila. Doosra sapne mein aayega shayad.",
+      "author": "Frustrated Footwear Fan",
+      "rating": 2,
+      "date": "2026-09-15T10:30:00Z"
+    },
+    {
+      "productId": 1,
+      "text": "5 star, lekin mujhe mila nahi. Delivery guy ne pehen liya.",
+      "author": "Rohit from Ranchi",
+      "rating": 5,
+      "date": "2026-09-20T14:00:00Z"
+    },
+    {
+      "productId": 2,
+      "text": "Hawa khol ke dekhi, kuch nahi tha. 10/10 would buy again.",
+      "author": "Air Enthusiast",
+      "rating": 5,
+      "date": "2026-09-18T09:00:00Z"
+    },
+    {
+      "productId": 3,
+      "text": "WiFi connect hua 2 second ke liye. Best 2 seconds of my life.",
+      "author": "Buffering Bhai",
+      "rating": 3,
+      "date": "2026-09-22T16:45:00Z"
+    },
+    {
+      "productId": 5,
+      "text": "Mera tax calculate kiya: 5 rupees. CA se better hai.",
+      "author": "Taxman Sharma",
+      "rating": 4,
+      "date": "2026-09-25T11:20:00Z"
+    },
+    {
+      "productId": 7,
+      "text": "Pen kharida, ink nahi hai. Imagination se exam likh diya. A+ aaya.",
+      "author": "Creative Writer",
+      "rating": 5,
+      "date": "2026-10-01T08:00:00Z"
+    },
+    {
+      "productId": 8,
+      "text": "Mirror mein SRK dikh raha hai. Main toh aur handsome hoon. Refund chahiye.",
+      "author": "Self-Love King",
+      "rating": 1,
+      "date": "2026-10-02T13:30:00Z"
+    },
+    {
+      "productId": 12,
+      "text": "GTA 6 nahi chala par Paint toh khul gaya. Gaming laptop hai bhai.",
+      "author": "Pro Gamer",
+      "rating": 3,
+      "date": "2026-10-03T15:00:00Z"
+    },
+    {
+      "productId": 14,
+      "text": "Book padh nahi paaya kyunki chapter 1 kehta hai chapter 1 padho. Infinite loop.",
+      "author": "Confused Reader",
+      "rating": 4,
+      "date": "2026-10-04T10:00:00Z"
+    },
+    {
+      "productId": 15,
+      "text": "Chair se gira. Core strong ho gaya. Hospital bill extra.",
+      "author": "Balance Master",
+      "rating": 2,
+      "date": "2026-10-05T17:00:00Z"
+    },
+    {
+      "productId": 18,
+      "text": "Cup mein chai dali, table pe chai mili. Fastest service ever.",
+      "author": "Chai Lover",
+      "rating": 5,
+      "date": "2026-10-06T07:30:00Z"
+    },
+    {
+      "productId": 21,
+      "text": "Box khola: nothing mila. Exactly as advertised. Impressed.",
+      "author": "Nothing Enthusiast",
+      "rating": 5,
+      "date": "2026-10-07T12:00:00Z"
+    },
+    {
+      "id": "rev-mv0srjxg",
+      "productId": 9,
+      "text": "bekhar hai",
+      "rating": 4,
+      "author": "Anonymous Sufferer",
+      "date": "2026-10-09T10:02:57.316Z"
+    }
+  ],
+  "complaints": []
+}

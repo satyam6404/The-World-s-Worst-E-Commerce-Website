@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MEGA WORST MART - Sab Kuch Bekaar. The world's worst e-commerce website. Deliberately terrible, hilariously bad, but functional." />
+  <title>🔥 MEGA WORST MART 🔥 | Sab Kuch Bekaar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══ FAKE LOADER (reaches 99%, then actually finishes ~3s) ═══ -->
+  <div id="fakeLoader">
+    <div id="fakeLoaderBarWrap"><div id="fakeLoaderBar"></div></div>
+    <div id="fakeLoaderText">Loading... 0%</div>
+  </div>
+
+  <!-- ═══ COOKIE BANNER ═══ -->
+  <div id="cookieBanner">
+    <div>🍪 Hum aapki saari cookies kha jayenge. Privacy? Woh kya hoti hai?</div>
+    <div>
+      <button id="cookieAccept">Accept</button>
+      <button id="cookieAccept2">Bhi Accept</button>
+    </div>
+    <a class="cookie-reject" id="cookieReject">sahi mein reject</a>
+  </div>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <marquee id="topMarquee" scrollamount="10">
+    🎉 MEGA SALE!!! 🎉 99% OFF (T&C: price badh jayega) 🎉 FREE DELIVERY* (*3 saal mein) 🎉 SABSE BEKAAR WEBSITE 🎉 AWARD WINNING* (*koi award nahi mila) 🎉
+  </marquee>
+
+  <!-- ═══ SALE COUNTDOWN ═══ -->
+  <div id="saleCountdown">
+    ⏰ MEGA SALE khatam hone mein: <span class="timer" id="countdownTimer">10:00:00</span>
+    <span style="font-size:12px; color:#888;">(reset hota rahega, tension mat lo)</span>
+  </div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header id="header">
+    <div id="logo" title="Logo ghoom raha hai kyunki hum bhi confused hain" role="img" aria-label="Shopping cart logo">🛒</div>
+    <h1 id="siteTitle">MEGA WORST MART</h1>
+    <nav id="nav" aria-label="Main navigation">
+      <a href="#" class="navLink" data-page="home" id="navHome">🏠 Home</a>
+      <a href="#" class="navLink" data-page="products" id="navProducts">🛍️ Products</a>
+      <a href="#" class="navLink" data-page="cart" id="navCart">🛒 Cart (<span id="cartCount">0</span>)</a>
+      <a href="#" class="navLink" data-page="orders" id="navOrders">📦 Orders</a>
+      <a href="#" class="navLink" id="navAuth">🔐 Login</a>
+      <div id="chaosMeter" title="Chaos Meter">
+        🌪️ <div id="chaosBarMini"><div id="chaosBarMiniInner"></div></div>
+        <span id="chaosLevelText">0%</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ═══ MAIN CONTENT (SPA-style, pages toggled via JS) ═══ -->
+  <main id="mainContent">
+
+    <!-- ─── HOME PAGE ─── -->
+    <div id="pageHome" class="page-section">
+      <div class="hero-banner">
+        <h2>🔥 SAB KUCH BEKAAR, PAR SASTA 🔥</h2>
+        <p>India ka sabse bekaar online store. Guaranteed dissatisfaction.</p>
+        <button class="hero-cta runaway-btn" id="heroBuyBtn">SHOP NOW 🛒</button>
+      </div>
+
+      <div class="viewers-counter">
+        👁️ <span id="viewersCount">7392</span> log abhi is page ko dekh rahe hain (jhooth)
+      </div>
+
+      <h2>🛍️ Hamare Bekaar Products</h2>
+      <p class="sub">Prices har refresh pe badalte hain. Hum bhi nahi jaante kyun.</p>
+
+      <!-- Search & Filters -->
+      <div id="searchFilterBar">
+        <input type="text" id="searchInput" placeholder="🔍 Kuch dhundho... ya mat dhundho" aria-label="Search products" />
+        <select id="categoryFilter" aria-label="Filter by category">
+          <option value="all">Sab Categories</option>
+        </select>
+        <select id="sortFilter" aria-label="Sort products">
+          <option value="random">🎲 Jo Mann Kare</option>
+          <option value="price_low">💸 Sasta Pehle</option>
+          <option value="price_high">💰 Mehnga Pehle</option>
+          <option value="name_az">🔤 A to Z</option>
+          <option value="name_za">🔤 Z to A</option>
+          <option value="rating">⭐ Rating</option>
+        </select>
+        <button id="searchBtn">🔍 Dhundho</button>
+      </div>
+      <div class="search-suggestion" id="searchSuggestion"></div>
+
+      <div id="productGrid" role="list" aria-label="Product listing"></div>
+    </div>
+
+    <!-- ─── PRODUCT DETAIL PAGE ─── -->
+    <div id="pageProductDetail" class="page-section hidden">
+      <button id="backToProducts">← Wapas jaao</button>
+      <div id="productDetail"></div>
+      <div id="productReviews" style="margin-top:20px;">
+        <h3 style="color:#ff0;">💬 Reviews</h3>
+        <div id="reviewList" class="review-list"></div>
+        <textarea id="reviewText" placeholder="Review likho... sach likho ya jhooth, hum kya kar lenge" rows="3"></textarea>
+        <button id="submitReview">📝 Review Bhejo</button>
+      </div>
+    </div>
+
+    <!-- ─── CART PAGE ─── -->
+    <div id="pageCart" class="page-section hidden">
+      <div id="cartSection">
+        <h2>🛒 Aapka Cart</h2>
+        <div id="cartList"></div>
+        <div class="coupon-bar">
+          <input type="text" id="couponInput" placeholder="Coupon code dalo (try: BEKAAR50)" />
+          <button id="applyCoupon">Apply</button>
+        </div>
+        <div id="couponMsg" class="coupon-msg"></div>
+        <div id="cartSummary" class="cart-summary hidden"></div>
+        <div style="margin-top:16px;">
+          <button id="goToCheckout">💳 Checkout (Best of Luck)</button>
+          <button id="clearCart" style="background:#555;">🗑️ Cart Saaf Karo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── CHECKOUT PAGE ─── -->
+    <div id="pageCheckout" class="page-section hidden">
+      <div id="checkoutSection">
+        <h2>💳 Checkout (Best of Luck)</h2>
+        <div class="fake-notice">⚠️ Yeh sab nakli hai. Koi asli payment nahi hogi. Relax karo.</div>
+
+        <!-- Step 1: Address -->
+        <div class="checkout-step active" id="checkoutStep1">
+          <h3>📍 Step 1: Address (Pakka wala)</h3>
+          <div class="form-group">
+            <label for="addrName">Aapka Naam</label>
+            <input type="text" id="addrName" placeholder="Sharma ji, Gupta ji, jo bhi ho" required />
+          </div>
+          <div class="form-group">
+            <label for="addrLine1">Address Line 1</label>
+            <input type="text" id="addrLine1" placeholder="Gali no. 420, Mohalla Bekaar" required />
+          </div>
+          <div class="form-group">
+            <label for="addrLine2">Address Line 2 <span class="optional">(optional)</span></label>
+            <input type="text" id="addrLine2" placeholder="Peepal ke ped ke paas" />
+          </div>
+          <div class="form-group">
+            <label for="addrCity">City</label>
+            <input type="text" id="addrCity" placeholder="Patna / Mumbai / Bermuda Triangle" required />
+          </div>
+          <div class="form-group">
+            <label for="addrPincode">Pincode</label>
+            <input type="text" id="addrPincode" placeholder="000000" maxlength="6" required />
+          </div>
+          <div class="form-group">
+            <label for="addrFirstLove">Aapka Pehla Pyaar Ka Naam <span class="optional">(optional, par batao)</span></label>
+            <input type="text" id="addrFirstLove" placeholder="...kya matlab kya fayda?" />
+          </div>
+          <div class="checkout-nav">
+            <button id="checkoutNext1">Aage Badho →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Payment -->
+        <div class="checkout-step" id="checkoutStep2">
+          <h3>💰 Step 2: Payment (Sab Nakli Hai)</h3>
+          <div class="payment-options" id="paymentOptions">
+            <div class="payment-option" data-method="cod">
+              <h4>💵 Cash on Delivery</h4>
+              <p>Paisa tab dena jab delivery aaye. IF delivery aaye.</p>
+            </div>
+            <div class="payment-option" data-method="dil">
+              <h4>❤️ Dil Se Payment</h4>
+              <p>Pyaar se pay karo. Accepted everywhere (nowhere).</p>
+            </div>
+            <div class="payment-option" data-method="kal">
+              <h4>📅 Kal Kar Denge</h4>
+              <p>Aaj nahi, kal. Kal bhi nahi, parson. Classic Indian jugaad.</p>
+            </div>
+          </div>
+          <div class="checkout-nav">
+            <button id="checkoutBack2">← Peeche</button>
+            <button id="checkoutNext2">Aage Badho →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: T&C + Confirm -->
+        <div class="checkout-step" id="checkoutStep3">
+          <h3>📜 Step 3: Terms & Conditions (Padho, ya mat padho)</h3>
+          <div class="tnc-scroll" id="tncScroll">
+            <p>1. Aap ye website use kar rahe ho, matlab aap agree karte ho ki hum bekaar hain.</p>
+            <p>2. Products ki quality ki koi guarantee nahi hai. Aapki zindagi ki bhi nahi.</p>
+            <p>3. Delivery time: jab mood aaye. Could be tomorrow, could be never.</p>
+            <p>4. Return policy: Return nahi hoga. Refund bhi nahi. Bas pyaar milega.</p>
+            <p>5. Aapka data safe hai. Kahan? Humko bhi nahi pata. Par safe hai.</p>
+            <p>6. Customer support hours: Monday to Friday, 3:17 AM to 3:18 AM.</p>
+            <p>7. Agar product kharab aaye toh hum zyada kharab bhejenge replacement mein.</p>
+            <p>8. Yeh T&C kabhi bhi change ho sakti hain, bina bataye, bina wajah ke.</p>
+            <p>9. Agar aap yahan tak padh liya, toh respect. Lekin koi reward nahi milega.</p>
+            <p>10. Agar koi dispute ho toh settling court: Bermuda Triangle High Court.</p>
+            <p>11. Shipping charges: Free* (*free ka matlab 99 rupees)</p>
+            <p>12. Packaging: We use premium quality newspaper and old grocery bags.</p>
+            <p>13. Insurance: Product ki insurance nahi hai. Aapki bhi nahi. Buy at own risk.</p>
+            <p>14. Privacy policy: We respect your privacy by not reading your emails. We read everything else.</p>
+            <p>15. Congratulations for scrolling this far. Still no reward though. 🎉</p>
+          </div>
+          <div class="tnc-check">
+            <input type="checkbox" id="tncCheckbox" />
+            <label for="tncCheckbox">Main ye sab padh liya aur agree karta/karti hoon (jhooth)</label>
+          </div>
+          <button id="tncSkipBtn" class="hidden" style="background:#555; font-size:12px;">Bas kar bhai, skip karo 😩</button>
+          <div class="checkout-nav">
+            <button id="checkoutBack3">← Peeche</button>
+            <button id="placeOrderBtn" disabled>🚀 ORDER PLACE KARO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── ORDER CONFIRMATION ─── -->
+    <div id="pageOrderConfirmation" class="page-section hidden">
+      <canvas id="confettiCanvas"></canvas>
+      <div id="orderConfirmation"></div>
+    </div>
+
+    <!-- ─── ORDER TRACKING ─── -->
+    <div id="pageTracking" class="page-section hidden">
+      <div id="trackingSection">
+        <h2>📦 Order Tracking</h2>
+        <div id="trackingContent"></div>
+      </div>
+    </div>
+
+    <!-- ─── MY ORDERS ─── -->
+    <div id="pageOrders" class="page-section hidden">
+      <div style="background: rgba(0,0,0,0.8); padding: 24px; border: 5px double #ff0; color: #fff;">
+        <h2>📦 Mere Orders</h2>
+        <div id="ordersList"></div>
+      </div>
+    </div>
+
+    <!-- ─── AUTH PAGE ─── -->
+    <div id="pageAuth" class="page-section hidden">
+      <div class="auth-section">
+        <h2>🔐 Login / Register</h2>
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">Login</div>
+          <div class="auth-tab" data-tab="register">Register</div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+          <div class="captcha-section" id="captchaSection">
+            <h4>🤖 Captcha: Select all images that are NOT images</h4>
+            <div class="captcha-grid" id="captchaGrid"></div>
+            <a class="captcha-skip" id="captchaSkip">🤖 Skip, I'm a robot</a>
+          </div>
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="aapka@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Password daalo" />
+          </div>
+          <button id="loginBtn">🔓 Login</button>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" class="hidden">
+          <div class="form-group">
+            <label for="regName">Naam</label>
+            <input type="text" id="regName" placeholder="Aapka bekaar naam" />
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" placeholder="aapka@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="Password (emoji + sabzi chahiye 🥔)" />
+            <div class="password-rules">
+              Rules: 10+ characters, 1 emoji, 1 sabzi ka naam (aloo/gobhi/bhindi/palak/tamatar/baingan/mooli/karela)
+            </div>
+          </div>
+          <button id="registerBtn">📝 Register</button>
+        </div>
+
+        <div id="authMsg" class="auth-msg hidden"></div>
+      </div>
+    </div>
+
+    <!-- ─── STATIC PAGES ─── -->
+    <div id="pageReturn" class="page-section hidden">
+      <div class="static-page">
+        <h1>🔄 Return Policy</h1>
+        <h2>Short Answer</h2>
+        <p>Return nahi hoga. Refund bhi nahi. Bas pyaar milega. ❤️</p>
+        <h2>Long Answer</h2>
+        <p>Humne bohot socha. Bohot discuss kiya. Meeting ki. PPT banayi. Aur result ye nikla:</p>
+        <p><strong>NAHI.</strong></p>
+        <p>Agar product kharab aaye, toh usse pyaar karo. Har cheez perfect nahi hoti. Jaise yeh website.</p>
+        <p>Agar bilkul hi bekaar aaye, toh humein email karo: <strong>nahi-sunte@worst.com</strong></p>
+        <p>Hum reply karenge. Shayad. Probably not. But the thought counts.</p>
+      </div>
+    </div>
+
+    <div id="pageTerms" class="page-section hidden">
+      <div class="static-page">
+        <h1>📜 Terms of Service</h1>
+        <p>Welcome to the Terms of Service. By reading this, you've already agreed to everything. Sorry.</p>
+        <h2>Section 1: Your Rights</h2>
+        <p>You have the right to remain confused. Anything you buy can and will be used against your wallet.</p>
+        <h2>Section 2: Our Responsibilities</h2>
+        <p>We are responsible for nothing. Literally nothing. We're not even sure how this website works.</p>
+        <h2>Section 3: Disputes</h2>
+        <p>All disputes will be settled by a game of rock-paper-scissors. Best of 3. Our office, our rules, we always pick rock.</p>
+        <h2>Section 4: Amendments</h2>
+        <p>We can change these terms anytime, for any reason, or for no reason at all. We probably will.</p>
+      </div>
+    </div>
+
+    <div id="pagePrivacy" class="page-section hidden">
+      <div class="static-page">
+        <h1>🔒 Privacy Policy</h1>
+        <p>Your privacy is important to us. That's why we wrote this page. We don't actually do anything about it though.</p>
+        <h2>Data We Collect</h2>
+        <p>Your email, your password (hashed, don't worry), and your hopes and dreams (those we crush for free).</p>
+        <h2>How We Use Your Data</h2>
+        <p>We use your data to provide you with the worst shopping experience possible. That's it. That's the whole policy.</p>
+        <h2>Who We Share With</h2>
+        <p>Nobody. Not because we respect your privacy, but because nobody wants your data. Sorry.</p>
+      </div>
+    </div>
+
+    <div id="pageContact" class="page-section hidden">
+      <div class="static-page">
+        <h1>📞 Contact Us</h1>
+        <p>Email: <strong>nahi-sunte@worst.com</strong></p>
+        <p>Phone: <strong>1800-BEKAAR-HAI</strong> (not a real number)</p>
+        <p>Address: <strong>Gali No. 404, Page Not Found Nagar, Internet</strong></p>
+        <h2>📝 Complaint Box (Nobody Reads This)</h2>
+        <textarea id="complaintText" placeholder="Apni complaint likho. Hum ignore karenge pyaar se." rows="4"></textarea>
+        <br/>
+        <button id="submitComplaint">📮 Complaint Bhejo</button>
+        <div id="complaintMsg" class="auth-msg hidden"></div>
+      </div>
+    </div>
+
+    <!-- ─── 404 PAGE ─── -->
+    <div id="page404" class="page-section hidden">
+      <div class="page-404">
+        <div class="big-emoji">🕳️</div>
+        <h1>404</h1>
+        <p>Ye page bhi kho gaya. Bilkul aapki umeedein jaisi.</p>
+        <p>Page dhundh rahe hain... nahi mila. Surprise! 🎉</p>
+        <button onclick="navigateTo('home')">🏠 Ghar Chalo</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ CHAT WIDGET (BekaarBot) ═══ -->
+  <div id="chatWidget" class="collapsed">
+    <div id="chatHeader">
+      <span>💬 BekaarBot (Offline but trying)</span>
+      <span id="chatToggle" style="cursor:pointer;">▲</span>
+    </div>
+    <div id="chatBody"></div>
+    <div id="chatInputWrap">
+      <input type="text" id="chatInput" placeholder="Problem batao, hum ignore karenge" aria-label="Chat message" />
+      <button id="chatSend">Bhejo</button>
+    </div>
+  </div>
+
+  <!-- ═══ TOAST CONTAINER ═══ -->
+  <div id="toastBox" aria-live="polite"></div>
+
+  <!-- ═══ SCROLL TO TOP ═══ -->
+  <button id="scrollTopBtn" title="Scroll to top (maybe)" aria-label="Scroll to top">⬇️</button>
+
+  <!-- ═══ SOUND TOGGLE ═══ -->
+  <button id="soundToggle" title="Sound on/off" aria-label="Toggle sound">🔇</button>
+
+  <!-- ═══ NEWSLETTER POPUP ═══ -->
+  <div id="newsletterPopup" class="modal hidden">
+    <div class="modalBox">
+      <span class="fake-x" id="fakeCloseNewsletter">✖</span>
+      <span class="closeBtn real-x" id="realCloseNewsletter">✖</span>
+      <h3>📧 SUBSCRIBE TO OUR NEWSLETTER!</h3>
+      <p>Bekaar emails paao har din! Unsubscribe ka option nahi hai! 🎉</p>
+      <input type="email" id="newsletterEmail" placeholder="Email (hum spam karenge)" />
+      <button id="newsletterSubmit">Subscribe (Regret Later)</button>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-awards">
+      🏆 Worst Website 2026 — Winner (Participant) |
+      ⭐ 0.5/5 on Google Reviews |
+      🥇 "Most Creative Use of Comic Sans" Award
+    </div>
+    <div class="footer-links">
+      <a href="#" data-page="return">Return Policy</a>
+      <a href="#" data-page="terms">Terms of Service</a>
+      <a href="#" data-page="privacy">Privacy Policy</a>
+      <a href="#" data-page="contact">Contact Us</a>
+    </div>
+    <p>© 2026 Mega Worst Mart. Sab adhikar surakshit. Sab zimmedari asurakshit.</p>
+    <p>Refund policy: "Haha." | Email: nahi-sunte@worst.com</p>
+    <a class="sahi-mode-link" id="sahiModeToggle">🔧 Sahi Mode (Boring)</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
